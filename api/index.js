@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
-
+require('dotenv').config();
 //Importing models
 const User = require("./models/user");
 const Post = require("./models/post");
@@ -21,9 +21,12 @@ app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
 
 //connnecting to moongoDB using mongoose
-mongoose.connect(
-  "mongodb+srv://vvk17sharma:s1dDpQFsSlaVKMP2@cluster0.0ryelhv.mongodb.net/"
-);
+mongoose.connect(process.env.MONGODB_URI).then(() => {
+    console.log('Connected to MongoDB');
+  }).catch((error) => {
+    console.error('Error connecting to MongoDB:', error);
+  });
+ 
 
 //secret for JWT
 const secret = "asdfghjkl";

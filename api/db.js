@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const connectionURL=`mongodb+srv://vvk17sharma:s1dDpQFsSlaVKMP2@cluster0.0ryelhv.mongodb.net/`
+const connectionURL=process.env.MONGODB_URI;
 
 mongoose.connect(connectionURL, {
     useNewUrlParser: true,
@@ -13,5 +13,3 @@ mongoose.connect(connectionURL, {
     console.error('Error connecting to MongoDB:', error);
   });
  
-  // mongodb+srv://vvk17sharma:<password>@cluster0.0ryelhv.mongodb.net/
-//s1dDpQFsSlaVKMP2
