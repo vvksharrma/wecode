@@ -12,6 +12,7 @@ const User = require("./models/user");
 const Post = require("./models/post");
 
 //Initializing
+const port =process.env.PORT || 4400
 const app = express();
 const uploadMiddleware = multer({ dest: "uploads/" });
 
@@ -137,4 +138,4 @@ app.put("/editpost/:id", uploadMiddleware.single("files"), async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-app.listen(4400, console.log("server started on port 4400"));
+app.listen(port, console.log("server started on port 4400"));
