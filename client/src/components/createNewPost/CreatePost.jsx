@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -32,7 +33,9 @@ const CreatePost = () => {
   const [redirect,setRedirect]=useState(false)
 
   const baseUrl=process.env.REACT_APP_API_URL
-  
+  const token = Cookies.get('token')
+
+
   async function handleSubmit(e){
     e.preventDefault();
     const data=new FormData();
@@ -44,6 +47,9 @@ const CreatePost = () => {
       method:'POST',
       body:data,
       credentials:'include',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
     })
     if(response){
           setRedirect(true)

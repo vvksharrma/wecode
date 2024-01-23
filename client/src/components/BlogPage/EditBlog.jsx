@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 import React, { useEffect, useState } from 'react'
 import ReactQuill from 'react-quill'
 import { Navigate, useParams } from 'react-router-dom'
@@ -30,6 +31,8 @@ const EditBlog = () => {
     const [content, setContent] = useState("");
     const [files,setFiles]=useState('')
     const [redirect,setRedirect]=useState(false)
+
+    const token=Cookies.get('token')
   
     useEffect(() => {
         fetch(`process.env.REACT_APP_API_URL/post/${id}`).then((res) => {
@@ -54,6 +57,9 @@ const EditBlog = () => {
           method:'PUT',
           body:data,
           credentials:'include',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          },
         })
         if(response){
               setRedirect(true)
