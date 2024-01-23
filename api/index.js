@@ -75,7 +75,8 @@ app.post("/logout", (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-  const { token } = req.cookies;
+  // const { token } = req.cookies;
+  const token = req.headers.authorization.split(' ')[1];
   jwt.verify(token, secret, {}, (err, info) => {
     if (err) throw err;
     res.json(info);
@@ -88,7 +89,8 @@ app.post("/createpost", uploadMiddleware.single("files"), async (req, res) => {
   const newPath = path + "." + parts[parts.length - 1];
   fs.renameSync(path, newPath);
 
-  const { token } = req.cookies;
+  // const { token } = req.cookies;
+  const token = req.headers.authorization.split(' ')[1];
   jwt.verify(token, secret, {}, async (err, info) => {
     if (err) throw err;
     const postDoc = await Post.create({
