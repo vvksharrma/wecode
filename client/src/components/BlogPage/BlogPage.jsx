@@ -9,7 +9,7 @@ const BlogPage = () => {
   const { userInfo } = useContext(userContext);
 
   useEffect(() => {
-    fetch(`http://localhost:4400/post/${id}`).then((res) => {
+    fetch(`process.env.REACT_APP_API_URL/post/${id}`).then((res) => {
       res.json().then((post) => {
         setPost(post);
       });
@@ -51,7 +51,7 @@ const BlogPage = () => {
         </div>
       )}
       <div className="image">
-        <img src={`http://localhost:4400/${post?.cover}`} alt="cover" />
+        <img src={`process.env.REACT_APP_API_URL/${post?.cover}`} alt="cover" />
       </div>
       <div dangerouslySetInnerHTML={{ __html: post?.content }} />
     </div>

@@ -3,11 +3,12 @@ import React, { useState } from 'react'
 const Register = () => {
     const [userName,setuserName]=useState('');
     const [password,setPassword]=useState('');
-
+    const baseURL=process.env.REACT_APP_API_URL;
+    
     async function register(e){
         e.preventDefault();
 
-        const response=await fetch('http://localhost:4400/register',{
+        const response=await fetch(`${baseURL}/register`,{
             method:'POST',
             body:JSON.stringify({userName,password}),
             headers:{'Content-Type':'application/json'},

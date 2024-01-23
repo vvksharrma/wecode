@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { userContext } from "../../context/userContext";
 
 const Header = () => {
-  const {userInfo,setUserinfo} =useContext(userContext)
+  const {userInfo,setUserinfo} =useContext(userContext);
+  const baseURL=process.env.REACT_APP_API_URL
   useEffect(() => {
-    fetch("http://localhost:4400/profile", {
+    fetch(`${baseURL}/profile`, {
       credentials: "include",
     }).then(response => {
       return response.json().then((userInfo) => {
@@ -15,7 +16,7 @@ const Header = () => {
   }, []);
 
   function logout() {
-    fetch("http://localhost:4400/logout", {
+    fetch(`${baseURL}/logout`, {
       method: "POST",
       credentials: "include",
     });

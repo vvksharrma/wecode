@@ -7,10 +7,10 @@ const Login = () => {
     const [password,setPassword]=useState('');
     const [redirect,setRedirect]=useState(false)
     const{setUserinfo}=useContext(userContext)
-
+    const baseURL=process.env.REACT_APP_API_URL
     async function login(e){
         e.preventDefault();
-        const response=await fetch('http://localhost:4400/login',{
+        const response=await fetch(`${baseURL}/login`,{
             method:'POST',
             body:JSON.stringify({userName,password}),
             headers:{'Content-Type':'application/json'},

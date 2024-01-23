@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import Post from './Post'
 
 const Homepage = () => {
-
   const [posts,setPosts]=useState({})
 
+  const baseUrl=process.env.REACT_APP_API_URL;
+  console.log(baseUrl);
+
   useEffect(()=>{
-    fetch('http://localhost:4400/post').then(res=>{
+    fetch(`${baseUrl}/post`).then(res=>{
       res.json().then(posts=>{
         setPosts(posts)
       })

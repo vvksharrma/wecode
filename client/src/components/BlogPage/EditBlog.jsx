@@ -32,7 +32,7 @@ const EditBlog = () => {
     const [redirect,setRedirect]=useState(false)
   
     useEffect(() => {
-        fetch(`http://localhost:4400/post/${id}`).then((res) => {
+        fetch(`process.env.REACT_APP_API_URL/post/${id}`).then((res) => {
           res.json().then((post) => {
             setTitle(post.title);
             setSummary(post.summary);
@@ -50,7 +50,7 @@ const EditBlog = () => {
         if(files?.[0]){
             data.set('files',files?.[0])
         }
-        const response=await fetch(`http://localhost:4400/editpost/${id}`,{
+        const response=await fetch(`process.env.REACT_APP_API_URL/editpost/${id}`,{
           method:'PUT',
           body:data,
           credentials:'include',

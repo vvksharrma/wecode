@@ -31,6 +31,8 @@ const CreatePost = () => {
   const [files,setFiles]=useState('')
   const [redirect,setRedirect]=useState(false)
 
+  const baseUrl=process.env.REACT_APP_API_URL
+  
   async function handleSubmit(e){
     e.preventDefault();
     const data=new FormData();
@@ -38,7 +40,7 @@ const CreatePost = () => {
     data.set('summary',summary);
     data.set('content',content);
     data.set('files',files[0])
-    const response=await fetch('http://localhost:4400/createpost',{
+    const response=await fetch(`${baseUrl}/createpost`,{
       method:'POST',
       body:data,
       credentials:'include',
