@@ -32,10 +32,11 @@ const EditBlog = () => {
     const [files,setFiles]=useState('')
     const [redirect,setRedirect]=useState(false)
 
-    const token=Cookies.get('token')
+    const token=Cookies.get('token');
+    const baseUrl=process.env.REACT_APP_API_URL
   
     useEffect(() => {
-        fetch(`process.env.REACT_APP_API_URL/post/${id}`).then((res) => {
+        fetch(`${baseUrl}/post/${id}`).then((res) => {
           res.json().then((post) => {
             setTitle(post.title);
             setSummary(post.summary);
@@ -53,7 +54,7 @@ const EditBlog = () => {
         if(files?.[0]){
             data.set('files',files?.[0])
         }
-        const response=await fetch(`process.env.REACT_APP_API_URL/editpost/${id}`,{
+        const response=await fetch(`${baseUrl}/editpost/${id}`,{
           method:'PUT',
           body:data,
           credentials:'include',
