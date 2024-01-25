@@ -10,9 +10,9 @@ const Homepage = () => {
   
   useEffect(()=>{
     fetch(`${baseUrl}/post`, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
+      // headers: {
+      //   'Authorization': `Bearer ${token}`
+      // }
     }).then(res=>{
       res.json().then(posts=>{
         setPosts(posts)

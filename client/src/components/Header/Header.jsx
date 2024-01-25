@@ -10,9 +10,9 @@ const Header = () => {
   useEffect(() => {
     fetch(`${baseURL}/profile`, {
       credentials: "include",
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
+      // headers: {
+      //   'Authorization': `Bearer ${token}`
+      // },
     }).then(response => {
       return response.json().then((userInfo) => {
         setUserinfo(userInfo);

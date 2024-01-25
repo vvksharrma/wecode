@@ -47,8 +47,11 @@ const CreatePost = () => {
       method:'POST',
       body:data,
       credentials:'include',
+      // headers: {
+      //   'Authorization': `Bearer ${token}`
+      // },
       headers: {
-        'Authorization': `Bearer ${token}`
+        "Content-Type": "multipart/form-data",
       },
     })
     if(response){
