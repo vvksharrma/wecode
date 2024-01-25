@@ -20,8 +20,7 @@ app.use(express.json()); //to parse reqest response to json
 app.use(
   cors({
     credentials: true,
-    // origin: "https://wecodeblog.vercel.app",
-    origin: "*",
+    origin: "https://wecodeblog.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     headers: ["Content-Type", "Authorization"],
   })
