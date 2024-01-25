@@ -82,7 +82,8 @@ app.post("/login", async (req, res) => {
       }
       res.cookie("token", token, {
         httpOnly: true,
-        sameSite: 'None' // or 'none' if you need cross-site cookies
+        sameSite: 'None', //  if you need cross-site cookies
+        secure: true,
       }).json({
         id: userDoc._id,
         username: userDoc.userName,
