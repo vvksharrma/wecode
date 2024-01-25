@@ -21,7 +21,7 @@ app.use(
   cors({
     credentials: true,
     origin: "https://wecodeblog.vercel.app",
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE","OPTIONS"],
     headers: ["Content-Type", "Authorization"],
   })
 );
