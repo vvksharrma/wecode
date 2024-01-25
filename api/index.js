@@ -83,7 +83,7 @@ app.post("/login", async (req, res) => {
       res.cookie("token", token, {
         httpOnly: true,
         sameSite: 'None', //  if you need cross-site cookies
-        secure: true,
+        secure: true
       }).json({
         id: userDoc._id,
         username: userDoc.userName,
@@ -99,8 +99,8 @@ app.post("/logout", (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-  // const { token } = req.cookies;
-  const token = req.headers.authorization.split(" ")[1];
+  const { token } = req.cookies;
+  // const token = req.headers.authorization.split(" ")[1];
   if (!token) {
     return res.status(401).json({ message: "Unauthorized" });
   }
@@ -116,8 +116,8 @@ app.post("/createpost", uploadMiddleware.single("files"), async (req, res) => {
   const newPath = path + "." + parts[parts.length - 1];
   fs.renameSync(path, newPath);
 
-  // const { token } = req.cookies;
-  const token = req.headers.authorization.split(" ")[1];
+  const { token } = req.cookies;
+  // const token = req.headers.authorization.split(" ")[1];
   jwt.verify(token, secret, {}, async (err, info) => {
     if (err) throw err;
     const postDoc = await Post.create({
