@@ -50,9 +50,6 @@ const CreatePost = () => {
       // headers: {
       //   'Authorization': `Bearer ${token}`
       // },
-      // headers: {
-      //   "Content-Type": "multipart/form-data",
-      // },
     })
     if(response){
           setRedirect(true)
