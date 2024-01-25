@@ -17,7 +17,7 @@ const app = express();
 const uploadMiddleware = multer({ dest: "uploads/" });
 
 app.use(express.json()); //to parse reqest response to json
-app.use(cors({ credentials: true, origin: "https://wecodeblog.vercel.app",methods: ['GET', 'POST', 'PUT', 'DELETE'],
+app.use(cors({ credentials: true, origin: "https://wecodeblog.vercel.app/",methods: ['GET', 'POST', 'PUT', 'DELETE'],
   headers: ['Content-Type', 'Authorization'], }));
 app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
