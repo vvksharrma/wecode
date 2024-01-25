@@ -6,29 +6,49 @@ const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
-require('dotenv').config();
+require("dotenv").config();
 //Importing models
 const User = require("./models/user");
 const Post = require("./models/post");
 
 //Initializing
-const port =process.env.PORT || 4400
+const port = process.env.PORT || 4400;
 const app = express();
 const uploadMiddleware = multer({ dest: "uploads/" });
 
 app.use(express.json()); //to parse reqest response to json
-app.use(cors({ credentials: true, origin: "https://wecodeblog.vercel.app/",methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  headers: ['Content-Type', 'Authorization'], }));
+app.use(
+  cors({
+    credentials: true,
+    origin: "https://wecodeblog.vercel.app/",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    headers: ["Content-Type", "Authorization"],
+  })
+);
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
+});
 app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
 
 //connnecting to moongoDB using mongoose
-mongoose.connect(process.env.MONGODB_URI).then(() => {
-    console.log('Connected to MongoDB');
-  }).catch((error) => {
-    console.error('Error connecting to MongoDB:', error);
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((error) => {
+    console.error("Error connecting to MongoDB:", error);
   });
- 
 
 //secret for JWT
 const secret = "asdfghjkl";
@@ -76,7 +96,7 @@ app.post("/logout", (req, res) => {
 
 app.get("/profile", (req, res) => {
   // const { token } = req.cookies;
-  const token = req.headers.authorization.split(' ')[1];
+  const token = req.headers.authorization.split(" ")[1];
   if (!token) {
     return res.status(401).json({ message: "Unauthorized" });
   }
@@ -93,7 +113,7 @@ app.post("/createpost", uploadMiddleware.single("files"), async (req, res) => {
   fs.renameSync(path, newPath);
 
   // const { token } = req.cookies;
-  const token = req.headers.authorization.split(' ')[1];
+  const token = req.headers.authorization.split(" ")[1];
   jwt.verify(token, secret, {}, async (err, info) => {
     if (err) throw err;
     const postDoc = await Post.create({
@@ -122,7 +142,7 @@ app.get("/post/:id", async (req, res) => {
 });
 
 app.put("/editpost/:id", uploadMiddleware.single("files"), async (req, res) => {
-  const{id}=req.params;
+  const { id } = req.params;
   const { originalname, path } = req.file;
   const parts = originalname.split(".");
   const newPath = path + "." + parts[parts.length - 1];
