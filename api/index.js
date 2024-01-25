@@ -123,7 +123,7 @@ app.get("/post/:id", async (req, res) => {
 
 app.put("/editpost/:id", uploadMiddleware.single("files"), async (req, res) => {
   const{id}=req.params;
-    const { originalname, path } = req.file;
+  const { originalname, path } = req.file;
   const parts = originalname.split(".");
   const newPath = path + "." + parts[parts.length - 1];
   fs.renameSync(path, newPath);
