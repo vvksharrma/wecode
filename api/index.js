@@ -23,7 +23,6 @@ app.use(
     origin: "https://wecodeblog.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE","OPTIONS"],
     headers: [
-      "Access-Control-Allow-Headers",
       "Access-Control-Allow-Origin",
       "Origin",
       "X-Requested-With",
@@ -81,9 +80,10 @@ app.post("/login", async (req, res) => {
       if (err) {
         throw err;
       }
-            res.cookie('test','true')
-
-      res.cookie("token", token).json({
+      res.cookie("token", token, {
+        httpOnly: true,
+        sameSite: 'None' // or 'none' if you need cross-site cookies
+      }).json({
         id: userDoc._id,
         username: userDoc.userName,
       });
