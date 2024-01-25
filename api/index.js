@@ -24,6 +24,7 @@ app.use(
     methods: ["GET", "POST", "PUT", "DELETE","OPTIONS"],
     headers: [
       "Access-Control-Allow-Headers",
+      "Access-Control-Allow-Origin",
       "Origin",
       "X-Requested-With",
       "Content-Type",
