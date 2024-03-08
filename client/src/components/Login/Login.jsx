@@ -43,12 +43,13 @@ const Login = () => {
             setUserinfo(userInfo);
             setLoading(false);
             setTimeout(() => {
-              setSuccessMessage(`Redirecting to home page`);
+              setSuccessMessage(`success ,Redirecting to home page`);
               setRedirect(true);
             }, 1000);
           });
         } else {
-          alert("WRONG CREDENTIALS");
+          setSuccessMessage('username or password incorrect')
+          setLoading(false)
         }
       } catch (error) {
         console.log(error);
