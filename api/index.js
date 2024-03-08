@@ -74,6 +74,7 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
   const { userName, password } = req.body;
   const userDoc = await User.findOne({ userName });
+  if (!userDoc) return res.status(400).json("User not found.");
   const pass = bcrypt.compareSync(password, userDoc.password);
   if (pass) {
     jwt.sign({ userDoc }, secret, {}, (err, token) => {
