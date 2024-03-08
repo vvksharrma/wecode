@@ -92,7 +92,7 @@ const Login = () => {
                 <span>Login</span>
                 )}
         </button>
-        {successMessage && <p style={{color:'green',textAlign:"center"}}>{successMessage}</p>}
+        {successMessage && <p style={{display:'block',color:'green',textAlign:"center"}}>{successMessage}</p>}
       </form>
     </div>
   );
