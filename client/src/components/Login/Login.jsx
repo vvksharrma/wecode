@@ -47,9 +47,10 @@ const Login = () => {
               setRedirect(true);
             }, 1000);
           });
-        } else {
-          setSuccessMessage('username or password incorrect')
-          setLoading(false)
+        }else if(!response.ok) {
+          setSuccessMessage('username or password incorrect');
+          setErrors({ server: 'An error occurred, please try again later.' });
+          setLoading(false);
         }
       } catch (error) {
         console.log(error);
@@ -86,12 +87,12 @@ const Login = () => {
               style={{ height: "1rem" }}
               alt="loading..."
               src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif"
-            />
-          ) : (
-            <span>Login</span>
-          )}
+              />
+              ) : (
+                <span>Login</span>
+                )}
         </button>
-      {successMessage && <p>{successMessage}</p>}
+        {successMessage && <p style={{textAlign:"center"}}>{successMessage}</p>}
       </form>
     </div>
   );
