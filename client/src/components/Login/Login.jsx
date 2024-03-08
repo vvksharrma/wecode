@@ -45,7 +45,7 @@ const Login = () => {
             setTimeout(() => {
               setSuccessMessage(`success ,Redirecting to home page`);
               setRedirect(true);
-            }, 1000);
+            }, 2000);
           });
         }if(response.status!==200) {
           setSuccessMessage('username or password incorrect');
@@ -92,7 +92,7 @@ const Login = () => {
                 <span>Login</span>
                 )}
         </button>
-        {successMessage && <p style={{textAlign:"center"}}>{successMessage}</p>}
+        {successMessage && <p style={{color:'green',textAlign:"center"}}>{successMessage}</p>}
       </form>
     </div>
   );

@@ -29,6 +29,9 @@ const Header = () => {
       },
     });
     setUserinfo(null);
+    setTimeout(function(){
+      alert("Logged out")
+    }, 1500);
   }
   return (
     <header>
