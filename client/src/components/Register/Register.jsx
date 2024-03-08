@@ -1,36 +1,76 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 const Register = () => {
-    const [userName,setuserName]=useState('');
-    const [password,setPassword]=useState('');
-    const baseURL=process.env.REACT_APP_API_URL;
-    
-    async function register(e){
-        e.preventDefault();
+  const [userName, setuserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
 
-        const response=await fetch(`${baseURL}/register`,{
-            method:'POST',
-            body:JSON.stringify({userName,password}),
-            headers:{'Content-Type':'application/json'},
-        })
-        if(response.status===200){
-            alert("Registered")
-        }
-        else{
-            alert("Try again")
-        }
+  const baseURL = process.env.REACT_APP_API_URL;
+
+  async function register(e) {
+    e.preventDefault();
+    let newErrors = {};
+    if (!userName) {
+      newErrors.username = "Username is required";
     }
-    return(
-        <div>
-            <form className='register' onSubmit={register}>
-            <h1>Register</h1>
-                <input type="text" placeholder="username" value={userName} onChange={(e)=>setuserName(e.target.value)}/>
-                <input type="password" placeholder='password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
-                <button type="submit">Register</button>
-            </form>
-            
-        </div>
-    )
-}
+    if (!password) {
+      newErrors.password = "Password is required";
+    }else if (password.length < 6) {
+        newErrors.password = "Password must be at least 6 characters long";
+      }
+      
+    setErrors(newErrors);
 
-export default Register
+    if (Object.keys(newErrors).length === 0) {
+      setLoading(true);
+      const response = await fetch(`${baseURL}/register`, {
+        method: "POST",
+        body: JSON.stringify({ userName, password }),
+        headers: { "Content-Type": "application/json" },
+      });
+      if (response.status === 200) {
+        setSuccessMessage("User registered successfully!");
+        setLoading(false);
+      } else {
+        alert("Try again");
+      }
+    }
+  }
+  return (
+    <div>
+      <form className="register" onSubmit={register}>
+        <h1>Register</h1>
+        {errors.username && <p>*{errors.username}</p>}
+        <input
+          type="text"
+          placeholder="username"
+          value={userName}
+          onChange={(e) => setuserName(e.target.value)}
+        />
+          {errors.password && <p>*{errors.password}</p>}
+        <input
+          type="password"
+          placeholder="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button disabled={loading} type="submit">
+          {loading ? (
+            <img
+              style={{ height: "1rem" }}
+              alt="loading..."
+              src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif"
+            />
+          ) : (
+            "Register"
+          )}
+        </button>
+      </form>
+      {successMessage && <p>{successMessage}</p>}
+    </div>
+  );
+};
+
+export default Register;

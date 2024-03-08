@@ -1,43 +1,50 @@
-*{
+* {
     box-sizing: border-box;
 }
-body{
-    color:#333;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+body {
+    color: #333;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-main{
+
+main {
     max-width: 960px;
     margin: 0 auto;
     padding: 10px;
 }
-header{
+
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
     width: 100%;
 }
-a{
+
+a {
     text-decoration: none;
     color: inherit;
 }
-header a.logo{
+
+header a.logo {
     font-weight: bold;
     font-size: 1.5rem;
 }
-header nav{
-    display:flex;
-    gap:15px;
+
+header nav {
+    display: flex;
+    gap: 15px;
 }
-header p{
+
+header p {
     font-style: italic;
     opacity: 40%;
 }
 
- 
+
 /* //home posts  */
 
-div.post{
+div.post {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 200px;
@@ -46,39 +53,43 @@ div.post{
     overflow: hidden;
     line-height: 1.5rem;
 }
-@media screen and (min-width:650px){
-    div.post{
+
+@media screen and (min-width:650px) {
+    div.post {
         grid-template-columns: 0.9fr 1.1fr;
     }
 }
-div.post div.image img{
+
+div.post div.image img {
     border-radius: .8em;
     height: 100%;
     width: 100%;
     object-fit: cover;
     background-color: #333;
 }
-div.post div.texts h2{
+
+div.post div.texts h2 {
     margin: 0px;
 }
 
-div.post p.info{
+div.post p.info {
     font-family: var(--font-mono);
-    margin: 6px 0px ;
+    margin: 6px 0px;
     color: #888;
     font-size: .7rem;
     font-weight: bold;
     display: flex;
     gap: 10px;
 }
-div.post p.summary{
+
+div.post p.summary {
     margin: 10px 0px;
     line-height: 1.4rem;
 }
 
 /* login\register */
 
-input{
+input {
     display: block;
     margin-bottom: 5px;
     width: 100%;
@@ -87,7 +98,11 @@ input{
     border-radius: 5px;
     background-color: #fff;
 }
-button{
+input::placeholder{
+    
+}
+
+button {
     width: 100%;
     display: block;
     background-color: #555;
@@ -100,20 +115,29 @@ button{
     padding: 7px 0;
 }
 
-form.login, form.register{
-        margin: 0 auto;
-        max-width: 480px;
-        text-align: center;
+form.login,
+form.register {
+    margin: 0 auto;
+    max-width: 480px;
+    text-align: center;
+
+    p {
+        display: table-cell;
+        color: red;
+        margin-top: 0.35rem;
+        font-size: 0.8rem;
+        white-space: nowrap;
     }
+}
 
 /* loader */
 .loader {
-    margin:auto;
-  left:0;
-  right:0;
-  top:0;
-  bottom:0;
-  position:fixed;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
 
     width: 48px;
     height: 48px;
@@ -124,61 +148,70 @@ form.login, form.register{
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
     text-align: center;
-    }
+}
 
-    @keyframes rotation {
+@keyframes rotation {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
-    } 
+}
 
 /* single post */
-div.post-page div.image{
+div.post-page div.image {
     max-height: 200px;
     overflow: hidden;
     display: flex;
 }
-div.post-page div.image img{
+
+div.post-page div.image img {
     object-fit: cover;
     object-position: center center;
     width: 100%;
 }
-div.post-page a{
-    color:#444;
-    text-decoration: underline ;
+
+div.post-page a {
+    color: #444;
+    text-decoration: underline;
 }
-div.post-page h1{
+
+div.post-page h1 {
     text-align: center;
     margin: 10px 0 5px;
 }
-div.post-page time{
+
+div.post-page time {
     text-align: center;
     display: block;
     font-size: .7rem;
     color: #999;
 }
-div.post-page div.author{
-    text-align: center; 
+
+div.post-page div.author {
+    text-align: center;
     margin-bottom: 20px;
     font-size: .7rem;
     font-weight: bold;
 }
-div.post-page div.content p{
+
+div.post-page div.content p {
     line-height: 1.6rem;
 }
 
 /* edit */
-div.edit-row{
+div.edit-row {
     text-align: center;
     margin-bottom: 10px;
 }
-div.edit-row a svg{
+
+div.edit-row a svg {
     height: 20px;
 }
-div.edit-row a.edit-btn{
+
+div.edit-row a.edit-btn {
     background-color: #333;
     display: inline-flex;
     align-items: center;
