@@ -67,8 +67,8 @@ const Register = () => {
             "Register"
           )}
         </button>
-      </form>
       {successMessage && <p style={{color:'green',textAlign:"center"}}>{successMessage}</p>}
+      </form>
     </div>
   );
 };
