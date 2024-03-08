@@ -33,8 +33,12 @@ const Register = () => {
       if (response.status === 200) {
         setSuccessMessage("User registered successfully!");
         setLoading(false);
+      }else if(response.status!==200) {
+        setSuccessMessage('Try another username');
+        setLoading(false);
       } else {
         alert("Try again");
+        setLoading(false)
       }
     }
   }
@@ -67,7 +71,7 @@ const Register = () => {
             "Register"
           )}
         </button>
-      {successMessage && <p style={{display:'block',color:'green',textAlign:"center"}}>{successMessage}</p>}
+      {successMessage && <p style={{display:'block',fontWeight:"bold",color:'green',textAlign:"center"}}>{successMessage}</p>}
       </form>
     </div>
   );
