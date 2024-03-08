@@ -47,13 +47,13 @@ const Login = () => {
               setRedirect(true);
             }, 1000);
           });
-        }else if(response.status!==200) {
+        }if(response.status!==200) {
           setSuccessMessage('username or password incorrect');
-          setErrors({ server: 'An error occurred, please try again later.' });
           setLoading(false);
         }
       } catch (error) {
         console.log(error);
+        setLoading(false)
       }
     }
   }
