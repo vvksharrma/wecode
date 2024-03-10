@@ -148,7 +148,10 @@ app.get("/post/:id", async (req, res) => {
 
 app.put("/editpost/:id", uploadMiddleware.single("files"), async (req, res) => {
   const { id } = req.params;
+  const{title,summary,content} = req.body;
   const { originalname, path } = req.file;
+  console.log(req.body);
+
   const parts = originalname.split(".");
   const newPath = path + "." + parts[parts.length - 1];
   fs.renameSync(path, newPath);
@@ -156,7 +159,9 @@ app.put("/editpost/:id", uploadMiddleware.single("files"), async (req, res) => {
     const postDoc = await Post.findByIdAndUpdate(
       id,
       {
-        ...req.body,
+        title,
+        summary,
+        content,
         cover: newPath,
       },
       { new: true }
