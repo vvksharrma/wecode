@@ -32,7 +32,7 @@ const EditBlog = () => {
     const [files,setFiles]=useState('')
     const [redirect,setRedirect]=useState(false)
 
-    // const token=Cookies.get('token');
+    const token=Cookies.get('token');
     const baseUrl=process.env.REACT_APP_API_URL
   
     useEffect(() => {

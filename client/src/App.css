@@ -180,11 +180,13 @@ div.post-page a {
 }
 
 div.post-page h1 {
+    background-color: lavender;
     text-align: center;
     margin: 10px 0 5px;
 }
 
 div.post-page time {
+    font-weight: bold;
     text-align: center;
     display: block;
     font-size: .7rem;

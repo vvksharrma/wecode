@@ -2,6 +2,7 @@ import moment from "moment";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { userContext } from "../../context/userContext";
+import notfound from "../../images/not-found-image.jpg";
 
 const BlogPage = () => {
   const { id } = useParams();
@@ -51,7 +52,12 @@ const BlogPage = () => {
         </div>
       )}
       <div className="image">
-        <img src={`${process.env.REACT_APP_API_URL}/${post?.cover}`} alt="cover" />
+        <img  src={`${process.env.REACT_APP_API_URL}/${post?.cover}` } alt="cover" 
+        onError={e => {
+          e.target.onerror = null;
+          e.target.src = notfound;
+        }}
+        />
       </div>
       <div dangerouslySetInnerHTML={{ __html: post?.content }} />
     </div>
