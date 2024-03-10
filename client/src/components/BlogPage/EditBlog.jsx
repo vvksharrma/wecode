@@ -56,7 +56,7 @@ const EditBlog = () => {
         }
         const response=await fetch(`${baseUrl}/editpost/${id}`,{
           method:'PUT',
-          body:data,
+          body:JSON.stringify(data),
           credentials:'include',
           headers: {
             "Content-Type": "multipart/form-data",
